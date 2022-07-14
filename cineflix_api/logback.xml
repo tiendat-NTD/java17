@@ -1,0 +1,28 @@
+<configuration>
+	<property name="/Users/tiendat-pc/Desktop/cineflix_api_log" />
+	<appender name="FILE-AUDIT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/Users/tiendat-pc/Desktop/cineflix_api_log/debug.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>/Users/tiendat-pc/Desktop/cineflix_api_log/archived/debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<logger name="com.mkyong" level="debug"
+		additivity="false">
+		<appender-ref ref="FILE-AUDIT" />
+	</logger>
+	<root level="error">
+		<appender-ref ref="FILE-AUDIT" />
+	</root>
+</configuration>
